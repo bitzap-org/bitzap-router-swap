@@ -1,5 +1,10 @@
 # Router Swap 简化实例
 
+Online address: [bitzap-router-swap](https://bitzap-router-swap.pages.dev/)
+
+- Only support Btr mainnet.
+- For swap between Btc and others.
+
 ## 运行项目
 
 - Clone code `git@github.com:bitzap-org/bitzap-router-swap.git`
