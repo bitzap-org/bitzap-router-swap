@@ -17,7 +17,7 @@ export const swapCheck = async (
 
 export const getCoinIdx = (coinAddress: string, pool: Pool): number => {
   const lowerCaseCoinAddress = coinAddress.toLowerCase()
-  const lowerCaseCoinAddresses = pool?.underlyingCoins.map((c) => c.address.toLowerCase()) || []
+  const lowerCaseCoinAddresses = pool?.underlyingCoins.map((c) => (c.contract || (c as any).address).toLowerCase()) || []
 
   const idx = lowerCaseCoinAddresses.indexOf(lowerCaseCoinAddress)
   return idx

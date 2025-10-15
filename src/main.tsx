@@ -9,7 +9,7 @@ import './index.css'
 import App from './App'
 import { Toaster } from './components/ui/toast'
 
-globalThis.Buffer = Buffer
+(globalThis as any).Buffer = Buffer
 
 const queryClient = new QueryClient()
 

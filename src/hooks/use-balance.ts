@@ -50,7 +50,7 @@ export function useBalance({ address, token, chain }: { address?: Address; token
   }
 
   if (token?.type === 'erc20') {
-    options = evmContractBalanceQueryOptions(config, address, chain?.id || chainId, token)
+    options = evmContractBalanceQueryOptions(config, address as Address, chain?.id || chainId, token)
   } else {
     options = evmNativeBalanceQueryOptions(config, address, chain?.id || chainId)
   }
