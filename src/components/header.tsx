@@ -4,6 +4,7 @@ import Logout from '@/components/icons/logout'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { btr, btrTestnet } from 'wagmi/chains'
 import { cn } from '@/lib/utils'
+import { injected } from 'wagmi/connectors'
 
 export function Header() {
   return (
@@ -16,20 +17,17 @@ function ConnectWalletButton() {
   const { connect, connectors, isPending: isConnecting } = useConnect()
   const { disconnect } = useDisconnect()
 
-  const expectedChain = import.meta.env.MODE === 'development' ? btrTestnet : btr
+  // const expectedChain = import.meta.env.MODE === 'development' ? btrTestnet : btr
+  const expectedChain = btr
   const handleConnect = async () => {
-    const connector = connectors.find((c) => c.id === 'web3-onboard')
-    if (!connector) {
-      return
-    }
-    connect({ connector, chainId: expectedChain.id })
+    connect({ connector: injected(), chainId: expectedChain.id })
   }
 
   const handleDisconnect = async () => {
     disconnect()
   }
 
-  const baseClassName = 'font-medium h-14 px-6 rounded-full text-primary bg-primary/[0.08] flex items-center gap-2'
+  const baseClassName = 'font-medium h-14 px-6 rounded-full text-primary bg-primary/[0.08] flex items-center gap-2 cursor-pointer'
 
   if (!address) {
     return (
