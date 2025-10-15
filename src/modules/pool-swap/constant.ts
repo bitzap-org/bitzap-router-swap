@@ -1,6 +1,7 @@
 import { Token } from '@/types'
 import { Pool } from './interface'
 import BitlayerIcon from '@/components/icons/BitlayerB'
+import { isProduction } from '@/lib/utils'
 
 export const btr_testnet_btc: Token = {
   id: 'btr_testnet_btc',
@@ -181,4 +182,4 @@ export const BTR_Pools = [
   },
 ]
 
-export const SWAP_POOLS = import.meta.env.MODE === 'development' ? BTR_TESTNET_Pools : BTR_Pools
+export const SWAP_POOLS = isProduction ? BTR_Pools : BTR_TESTNET_Pools

@@ -3,7 +3,6 @@ import { useAccount, useConfig, useReadContract, useConnect, useSwitchChain } fr
 import { useMutation, useQuery } from '@tanstack/react-query'
 import poolAbi from '@/abis/pool-swap.json'
 import routerAbi from '@/abis/router-swap.json'
-import erc20Abi from '@/abis/erc20.json'
 import {
   Address,
   BaseError,
@@ -25,17 +24,18 @@ import { getCoinIdx, swapCheck, swapMinAmount } from './utils'
 import { RouterMap } from './router-map'
 import { Token } from '@/types'
 import { useBalance } from '@/hooks/use-balance'
+import { CURVE_API_BASE_URL, CURVE_NETWORK, CURVE_ROUTER_SWAP_ADDRESS, isProduction } from '@/lib/utils'
 
-export const RouterContractAddress = import.meta.env.VITE_CURVE_ROUTER_SWAP_ADDRESS
-export const expectedChain = import.meta.env.MODE === 'development' ? btrTestnet : btr
-export const defaultTokens = import.meta.env.MODE === 'development'
+export const RouterContractAddress = CURVE_ROUTER_SWAP_ADDRESS
+export const expectedChain = isProduction ? btr : btrTestnet
+export const defaultTokens = isProduction
   ? {
-    fromToken: btr_testnet_btc,
-    toToken: btr_testnet_usdt,
-  }
-  : {
     fromToken: btr_btc,
     toToken: btr_usdt,
+  }
+  : {
+    fromToken: btr_testnet_btc,
+    toToken: btr_testnet_usdt,
   }
 
 export type WalletBalance = {
@@ -164,7 +164,7 @@ export function usePoolSwap() {
   const { address, chainId } = useAccount()
   const config = useConfig()
   const { toast } = useToast()
-  const {  } = React.useContext(QuickSwapContext)
+  const { } = React.useContext(QuickSwapContext)
   const { switchChainAsync, isPending: isSwitching } = useSwitchChain()
   const { connect, connectors, isPending: isConnecting } = useConnect()
   const { handleException } = useHandleException()
@@ -475,11 +475,10 @@ export const useHandleException = () => {
   }
 
   return { handleException }
-
 }
 
 export const getTokensPrice = async () => {
-  const url = `${import.meta.env.VITE_CURVE_API_BASE_URL}/v1/getPrice/${import.meta.env.VITE_CURVE_NETWORK}`
+  const url = `${CURVE_API_BASE_URL}/v1/getPrice/${CURVE_NETWORK}`
   const response = await axios.get(url, { validateStatus: () => true })
   return response.data?.data?.list ?? []
 }

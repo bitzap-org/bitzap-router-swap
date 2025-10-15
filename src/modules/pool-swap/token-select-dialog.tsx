@@ -10,7 +10,6 @@ import { useMemo, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useQuickSwapContext, useTokens } from './quick-swap-context'
 import { Token } from '@/types'
-import { sitePath } from '@/lib/utils'
 import { RouterMap } from './router-map'
 import { ChevronDown } from 'lucide-react'
 
@@ -67,8 +66,8 @@ export default function TokenSelectDialog({ tokenType }: TokenSelectDialogProps)
         <DialogHeader>
           <DialogTitle className="font-title italic color-foreground text-lg md:text-xl font-semibold flex items-center justify-start">Token Select</DialogTitle>
         </DialogHeader>
-        <div className="flex flex-row justify-between items-center mt-1 md:mt-6 rounded-xl py-2 px-3">
-          <div className="w-fit flex items-center gap-4 bg-white p-1 md:p-3 rounded-xl">
+        <div className="flex flex-row justify-between items-center mt-1 md:mt-0 rounded-xl py-2 px-3">
+          <div className="w-fit flex items-center gap-4 bg-white p-1 md:p-3 rounded-xl flex-wrap">
             {tokenList.map((token) => (
               <TokenItem key={token.contract} token={token} onClick={() => onTokenItemClick(token)} />
             ))}
@@ -83,7 +82,7 @@ export const SelectedTokenItem = ({ token, className }: { token: Token; classNam
   return (
     <div className={cn("flex items-center text-foreground text-xs/none md:text-base/none font-[400] gap-2 bg-[#F9F9F9]", className)}>
       <img
-        src={sitePath(`images/tokens/${token.symbol.toLowerCase()}.png`)}
+        src={`images/tokens/${token.symbol.toLowerCase()}.png`}
         alt={token.contract}
         className="size-4"
         loading="lazy"
@@ -101,7 +100,7 @@ export const TokenItem = ({ token, onClick }: { token: Token; onClick: () => voi
     <Button variant="ghost" className="flex flex-col gap-2 bg-[#F9F9F9]" onClick={onClick}>
       <div className="flex items-center text-foreground text-xs/none md:text-base/none font-[400] gap-2">
         <img
-          src={sitePath(`images/tokens/${token.symbol.toLowerCase()}.png`)}
+          src={`images/tokens/${token.symbol.toLowerCase()}.png`}
           alt={token.contract}
           className="size-4"
           loading="lazy"

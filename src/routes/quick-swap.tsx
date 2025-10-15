@@ -2,7 +2,6 @@ import { Page } from '@/components/page';
 import { Card, CardHeader, CardContent } from '@/components/ui/card'
 import { SVGProps } from 'react';
 import { SectionQuickSwap } from '@/modules/pool-swap/section-quick-swap';
-import { sitePath } from '@/lib/utils';
 import { QuickSwapProvider } from '@/modules/pool-swap/quick-swap-context';
 
 
@@ -11,8 +10,8 @@ export default function SwapPage() {
   return (
     <Page className='relative px-4 md:px-0'>
       <img
-        className="absolute left-1/2 top-[138px] w-[990px] z-[-1] -translate-x-1/2  hidden mdup:block opacity-45"
-        src={sitePath("/images/quick-swap/home-bg.png")}
+        className="absolute left-1/2 top-[138px] w-[990px] z-[-1] -translate-x-1/2  hidden md:block opacity-45"
+        src={"/images/quick-swap/home-bg.png"}
         alt="Bitlayer"
       />
       <Card className="md:max-w-lg w-full m-auto md:mt-16 mb-10">
@@ -33,7 +32,7 @@ export default function SwapPage() {
 }
 
 
-const SwapLogoGif = () => <img src={sitePath("/images/logo.gif")} alt="swap animate" className="w-14 hidden md:block" />
+const SwapLogoGif = () => <img src={"/images/logo.gif"} alt="swap animate" className="w-14 hidden md:block" />
 const SwapTitle = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 28" fill="none" className="h-5 md:h-7" {...props}>
     <path

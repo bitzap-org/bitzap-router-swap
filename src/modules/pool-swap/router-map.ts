@@ -1,3 +1,5 @@
+import { isProduction } from '@/lib/utils';
+
 export const Btr_Testnet_Router_Map: any = {
   'btc-yusd': {
     _route: [
@@ -176,7 +178,7 @@ export const Btr_Testnet_Router_Map: any = {
       [0, 0, 0, 0],
     ],
   },
-}
+};
 
 export const Btr_Router_Map: any = {
   'btc-usdt': {
@@ -816,6 +818,6 @@ export const Btr_Router_Map: any = {
       [0, 0, 0, 0],
     ],
   },
-}
+};
 
-export const RouterMap = import.meta.env.MODE === 'development' ? Btr_Testnet_Router_Map : Btr_Router_Map
+export const RouterMap = isProduction ? Btr_Router_Map : Btr_Testnet_Router_Map;
