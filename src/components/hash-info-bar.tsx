@@ -1,6 +1,7 @@
 import { scanTxPath } from '@/lib/utils'
 import { ExternalLinkIcon } from '@/components/icons/link'
 import * as React from 'react'
+import { Close } from './icons/Close'
 
 type Props = {
   description: string | React.ReactNode
@@ -25,6 +26,9 @@ export const HashInfoBar = ({ description, txHash, onClose }: Props) => {
           </a>
         )}
       </div>
+      {onClose && <button onClick={onClose} className="text-[#c1c1c1] hover:text-primary cursor-pointer">
+        <Close className="size-4 cursor-pointer" />
+      </button>}
     </div>
   )
 }

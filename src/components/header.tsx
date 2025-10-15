@@ -52,7 +52,7 @@ function ConnectWalletButton() {
         {shortAddress(address)}
         <div className="w-0.5 h-4 bg-[#c1c1c1]"></div>
         <Tooltip>
-          <TooltipTrigger><SwitchCameraIcon className="size-5 shrink-0 min-w-0" /></TooltipTrigger>
+          <TooltipTrigger><SwitchCameraIcon className="size-5 shrink-0 min-w-0 cursor-pointer" /></TooltipTrigger>
           <TooltipContent>
             <div className='flex items-center gap-2 max-w-80'>
               Switch to {expectedChain.name}
